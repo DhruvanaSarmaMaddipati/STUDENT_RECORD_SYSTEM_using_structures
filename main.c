@@ -2,8 +2,9 @@
 #include <stdlib.h>
 #include "student.h"
 
-Student students[MAX_STUDENTS];
+Student *students = NULL; 
 int student_count = 0;
+int student_capacity = 0; 
 
 int main() {
     char choice, exit_choice;
@@ -36,10 +37,12 @@ int main() {
 
                 if (exit_choice == 'S' || exit_choice == 's') {
                     stud_save();
+                    free(students);
                     printf("\nData committed. Program terminated successfully.\n");
                     exit(0);
                 }
                 else if (exit_choice == 'E' || exit_choice == 'e') {
+                    free(students);
                     printf("\nExited without saving volatile states.\n");
                     exit(0);
                 }
