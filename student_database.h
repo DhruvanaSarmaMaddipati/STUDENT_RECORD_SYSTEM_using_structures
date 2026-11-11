@@ -1,8 +1,6 @@
 #ifndef STUDENT_H
 #define STUDENT_H
 
-#define MAX_STUDENTS 100
-
 typedef struct {
     char student_id[15];     
     char name[50];
@@ -12,8 +10,9 @@ typedef struct {
     float perc_grad;         
 } Student;
 
-extern Student students[MAX_STUDENTS];
+extern Student *students;      
 extern int student_count;
+extern int student_capacity;   
 
 void stud_add();
 void stud_del();
