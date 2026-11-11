@@ -1,11 +1,19 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include "student.h"
 
 void stud_add() {
-    if (student_count >= MAX_STUDENTS) {
-        printf("\nDatabase error: Maximum record storage limit reached.\n");
-        return;
+     if (student_count >= student_capacity) {
+        int new_capacity = (student_capacity == 0) ? 5 : student_capacity * 2;
+        Student *temp = realloc(students, new_capacity * sizeof(Student));
+        
+        if (temp == NULL) {
+            printf("\nMemory Allocation Error: Heap memory full!\n");
+            return;
+        }
+        students = temp;
+        student_capacity = new_capacity;
     }
 
     char temp_id[15];
